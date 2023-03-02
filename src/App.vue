@@ -26,7 +26,8 @@ h1{
     color: yellow;
 }
 aside{
-    float: right;
+    width: 25%;
+  float: right;
 }
 </style>
 
