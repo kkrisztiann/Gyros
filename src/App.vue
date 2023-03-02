@@ -1,10 +1,10 @@
 <template>
       <header>
           <div class="d-flex flex-row justify-content-around">
-            <img src="../src/assets/img/misztergiroszlogo.png" alt="">
-          <h1 class="d-flex align-self-center">
-              Mr. Gyros
-          </h1>
+            <img class="krisztiankepe" src="../src/assets/img/misztergiroszlogo.png" alt="">
+            <img class="skibidi" src="../src/assets/img/brr-skidibi.gif" alt="">
+            <img class="logo" src="../src/assets/img/logo.png" alt="">
+            <img class="skibidi" src="../src/assets/img/skibidi-dop-dop.gif" alt="">
           </div>
           
       </header>
@@ -27,8 +27,17 @@ aside{
     width: 25%;
   float: right;
 }
-img{
+.krisztiankepe{
     width: 80px;
+}
+.logo{
+    width: 400px;
+}
+.skibidi{
+    width: 400px;
+}
+img{
+    height:160px;
 }
 </style>
 
