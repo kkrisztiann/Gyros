@@ -1,5 +1,7 @@
 <template>
-  
+  <h2>
+      Ételek
+  </h2>
 </template>
 
 <script>
