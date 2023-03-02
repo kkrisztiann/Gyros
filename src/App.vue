@@ -1,5 +1,6 @@
 <template>
       <header>
+          <img src="../src/assets/img/misztergiroszlogo.png" alt="">
           <h1>
               Mr. Gyros
           </h1>
