@@ -37,7 +37,6 @@
 
   </div>
 </div>
-
 </template>
 <style scoped>
 .card{
@@ -55,3 +54,30 @@
   position: relative;
 }
 </style>
+<script>
+import axios from 'axios';
+
+export default{
+   components: {
+     axios
+   },
+   data(){
+      return{
+         rendelesek: [],
+         elerheto:false
+      }
+   },
+   created(){
+ axios.get("http://localhost:3000/rendelesek").then(res => {
+   console.log(res.data)
+   let data = res.data;
+   this.rendelesek = res.data 
+   console.log(this.rendelesek);
+ })
+ .catch(err => {
+   console.log(err);
+ });
+}
+
+}
+</script>
