@@ -17,7 +17,7 @@
 <style scoped>
 header{
     height: 170px;
-    background-color:rgb(160, 85, 0);
+    background-color:rgb(1, 124, 194);
 }
 h1{
     text-align: center;

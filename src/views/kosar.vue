@@ -45,6 +45,10 @@
 }
 .offcanvas{
     background-color:lightgray;
+    background-image: url('../assets/img/GörögAkhilleusz.png');
+    background-repeat: repeat;
+    background-size: contain;
+    padding: 0 50px 0 50px;
 }
 .tipp {
     float: right;
