@@ -1,25 +1,22 @@
 <template>
       <header>
-          <img src="../src/assets/img/misztergiroszlogo.png" alt="">
-          <h1>
+          <div class="d-flex flex-row justify-content-around">
+            <img src="../src/assets/img/misztergiroszlogo.png" alt="">
+          <h1 class="d-flex align-self-center">
               Mr. Gyros
           </h1>
+          </div>
+          
       </header>
       <main>
+          <kosar></kosar>
         <etelek></etelek>
       </main>
-      <aside>
-          <kosar></kosar>
-      </aside>
 </template>
 
 <style scoped>
-
-body{
-    margin: 0;
-}
 header{
-    height: 200px;
+    height: 170px;
     background-color:rgb(160, 85, 0);
 }
 h1{
@@ -29,6 +26,9 @@ h1{
 aside{
     width: 25%;
   float: right;
+}
+img{
+    width: 80px;
 }
 </style>
 
