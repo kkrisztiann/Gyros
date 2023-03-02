@@ -6,8 +6,15 @@
       </header>
 </template>
 
-<style>
+<style scoped>
+
+body{
+    margin: 0;
+}
 header{
-    background-image: url('../src/assets/header_bgi.png');
+    background-image: url('../src/assets/img/header.png');
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 </style>
