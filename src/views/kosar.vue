@@ -11,9 +11,11 @@
   </div>
   <div class="offcanvas-body">
     
-    <div class="d-flex flex-row justify-content-around"> <!-- ezt kell v-for -->
-          <div>
-            Kaja neve
+    <div class="d-flex flex-row justify-content-around" v-for="kapcsolat in kapcsolatok"> <!-- ezt kell v-for -->
+          <div v-for="etel in etelek">
+            <span v-if="etel.ID = kapcsolat.etelekID">
+              {{ etel.nev}}
+            </span>
           </div>
           <div>
            Db
@@ -62,20 +64,38 @@ export default{
      axios
    },
    data(){
-      return{
-         rendelesek: [],
-         elerheto:false,
-         baseurl:"http://localhost/Fekete párducok/Gyros/API/database.php"
+     return{
+       rendelesek: [],
+       etelek: [],
+       kapcsolatok: [],
+       baseurl:"http://localhost/Gyros/API/database.php"
       }
-   },
-   created(){
+    },
+created(){
+
  axios.get(this.baseurl+"?table=rendelesek").then(res => {
    this.rendelesek = res.data 
  })
  .catch(err => {
    console.log(err);
- });
-}
+ }),
+
+  axios.get(this.baseurl+"?table=etelek").then(res => {
+   this.etelek = res.data 
+ })
+ .catch(err => {
+   console.log(err);
+ }),
+
+  axios.get(this.baseurl+"?table=kapcsolat").then(res => {
+   this.kapcsolatok= res.data 
+ })
+ .catch(err => {
+   console.log(err);
+ })
 
 }
+}
+
+
 </script>
