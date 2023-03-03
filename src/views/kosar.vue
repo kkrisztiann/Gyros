@@ -70,10 +70,7 @@ export default{
    },
    created(){
  axios.get(this.baseurl+"?table=rendelesek").then(res => {
-   console.log(res.data)
-   let data = res.data;
    this.rendelesek = res.data 
-   console.log(this.rendelesek);
  })
  .catch(err => {
    console.log(err);
