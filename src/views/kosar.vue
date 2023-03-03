@@ -68,11 +68,8 @@ export default{
       }
    },
    created(){
- axios.get("http://localhost:3000/rendelesek").then(res => {
-   console.log(res.data)
-   let data = res.data;
-   this.rendelesek = res.data 
-   console.log(this.rendelesek);
+      axios.get("http://localhost:3000/rendelesek").then(res => {
+        this.rendelesek = res.data 
  })
  .catch(err => {
    console.log(err);
