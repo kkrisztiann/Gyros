@@ -64,7 +64,6 @@ export default{
    data(){
       return{
          rendelesek: [],
-         elerheto:false,
          baseurl:"http://localhost/Fekete párducok/Gyros/API/database.php"
       }
    },
@@ -75,6 +74,7 @@ export default{
  .catch(err => {
    console.log(err);
  });
+
 }
 
 }
