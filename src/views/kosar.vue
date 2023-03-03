@@ -64,11 +64,12 @@ export default{
    data(){
       return{
          rendelesek: [],
-         elerheto:false
+         elerheto:false,
+         baseurl:"http://localhost/Fekete párducok/Gyros/API/database.php"
       }
    },
    created(){
- axios.get("http://localhost:3000/rendelesek").then(res => {
+ axios.get(this.baseurl+"?table=rendelesek").then(res => {
    console.log(res.data)
    let data = res.data;
    this.rendelesek = res.data 
