@@ -1,8 +1,7 @@
 <template>
 
-<div class="tipp">
-    <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"> Kosaram </button>
-</div>
+<button class="btn btn-lg btn-dark m-3 rounded-circle kosargomb" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-cart3"></i></button>
+
 
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
@@ -11,8 +10,8 @@
   </div>
   <div class="offcanvas-body">
     
-    <div class="d-flex flex-row justify-content-around" v-for="kapcsolat in kapcsolatok"> <!-- ezt kell v-for -->
-          <div v-for="etel in etelek">
+    <div class="d-flex flex-row justify-content-around"> <!-- ezt kell v-for -->
+          <div v-for="etel in ">
             <span v-if="etel.ID = kapcsolat.etelekID">
               {{ etel.nev}}
             </span>
@@ -41,8 +40,11 @@
 </div>
 </template>
 <style scoped>
-.card{
-    border: 2px solid black;
+
+.kosargomb{
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 .offcanvas{
     background-color:lightgray;
@@ -94,6 +96,16 @@ created(){
    console.log(err);
  })
 
+},
+methods:{
+  Kosar(){
+      if (JSON.parse(localStorage.getItem("kosar"))==null) {
+      return [];
+      }
+      else{
+        return JSON.parse(localStorage.getItem("kosar"));
+      }
+    }
 }
 }
 

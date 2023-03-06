@@ -2,15 +2,15 @@
       <header>
           <div class="d-flex flex-row justify-content-around">
             <img class="krisztiankepe" src="../src/assets/img/misztergiroszlogo.png" alt="">
-            <img class="skibidi" src="../src/assets/img/brr-skidibi.gif" alt="">
+            <img class="mt-1 skibidi" src="../src/assets/img/brr-skidibi.gif" alt="">
             <img class="logo" src="../src/assets/img/logo.png" alt="">
-            <img class="skibidi" src="../src/assets/img/skibidi-dop-dop.gif" alt="">
+            <img class="mt-1 skibidi" src="../src/assets/img/skibidi-dop-dop.gif" alt="">
           </div>
           
       </header>
       <main>
           <kosar></kosar>
-        <etelek></etelek>
+        <etelek ></etelek>
       </main>
 </template>
 
