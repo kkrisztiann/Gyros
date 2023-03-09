@@ -105,6 +105,7 @@
             $affectedRows = $db->exec("INSERT INTO $table (ID $fields) VALUES(null $values)"); 
             $results = array(
                 'affectedRows' => $affectedRows,
+                'insertId' => $db->lastInsertId(),
                 'message' => "A művelet végrehajtva!"
             );
         }

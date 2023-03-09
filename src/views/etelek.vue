@@ -59,6 +59,7 @@ export default{
       }
 
       localStorage.setItem("kosar", JSON.stringify(kosar))
+      this.$parent.$refs.kosar.Kosar();
     },
     Kosar(){
       if (JSON.parse(localStorage.getItem("kosar"))==null) {
