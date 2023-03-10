@@ -35,10 +35,52 @@
         
 
       <button class="btn btn-dark m-3" @click="Rendeles()">Rendelés</button>
+      <button class="btn btn-success m-3 rendelesek" data-bs-toggle="modal" data-bs-target="#exampleModal">Rendelések</button>
     </div>
   </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Rendelések</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Név</th>
+              <th>Telefonszám</th>
+              <th>Cím</th>
+              <th>Megjegyzés</th>
+              <th>Kiszállítva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="rendeles in rendelesek">
+            <td>{{rendeles.nev}}</td>
+            <td>{{rendeles.telefonszam}}</td>
+            <td>{{rendeles.cim}}</td>
+            <td>{{rendeles.megjegyzes}}</td>
+            <td><input type="checkbox" :checked="rendeles.kiszallitva==0 ? false : true"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Bezár</button>
+      </div>
+  </div>
+</div>
 </template>
 <style scoped>
+
+.rendelesek{
+  position: absolute;
+  bottom: 0;
+}
 .ElemAKosarban{
   padding: 10px 0 10px 10px;
   border: 1px solid black
@@ -71,15 +113,24 @@ export default{
      return{
        kosartartalom:[],
        rendeles:{},
+       rendelesek:[],
        baseurl:"http://localhost/Fekete párducok/Gyros/API/database.php"
       }
     },
 created(){
   this.Kosar();
-
+  this.RendelesekLekeres();
 
 },
 methods:{
+  RendelesekLekeres(){
+    axios.get(this.baseurl+"?table=rendelesek").then(res => {
+      this.rendelesek = res.data 
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  },
   Kosar(){
       if (JSON.parse(localStorage.getItem("kosar"))==null) {
       this.kosartartalom=[]
@@ -108,21 +159,24 @@ methods:{
       }
       axios.post(this.baseurl, data).then(res => {
         for (let i = 0; i < this.kosartartalom.length; i++) {
+          console.log(this.kosartartalom);
           let kapcsolatdata={
             table:"kapcsolat",
             values:{
-              rendelesekID:res.insertId,  
+              rendelesekID:res.data.insertId,  
               etelekID:this.kosartartalom[i].ID,
               mennyiseg:this.kosartartalom[i].mennyiseg
             }
           }
+          console.log(kapcsolatdata);
           axios.post(this.baseurl, kapcsolatdata).then(res =>{
             if (i==this.kosartartalom.length-1) {
               alert("rendelését sikeresen rögzítettük!")
         
               localStorage.setItem("kosar", JSON.stringify([]))
               this.rendeles={}
-              this.Kosar()      
+              this.Kosar()  
+              this.RendelesekLekeres()    
             }
           })
 
