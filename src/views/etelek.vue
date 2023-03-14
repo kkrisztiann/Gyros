@@ -27,7 +27,7 @@ export default{
    data(){
       return{
          etelek: [],
-         baseurl:"http://localhost/Fekete párducok/Gyros/API/database.php"
+         baseurl:"http://localhost/Gyros/API/database.php"
       }
    },
    created(){

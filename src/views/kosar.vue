@@ -1,6 +1,7 @@
 <template>
 
 <button class="btn btn-lg btn-dark m-3 rounded-circle kosargomb" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-cart3"></i></button>
+<button class="btn btn-lg btn-dark m-3 felvetel " data-bs-toggle="modal" data-bs-target="#ujgyrosz"> <i class="bi bi-plus"></i></button>
 
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -74,6 +75,42 @@
       </div>
   </div>
 </div>
+
+  <!-- Modal 2.0 -->
+  <div class="modal fade" id="ujgyrosz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> Új Gyros fevétele </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <span class="input-group-text"> Név </span>
+          <input type="text"  class="form-control" v-model="ujetel.nev">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text"> Összetevők </span>
+          <input type="text" class="form-control" v-model="ujetel.osszetevok">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text"> Ár </span>
+          <input type="number" class="form-control" v-model="ujetel.ar">
+        </div>
+        <div>
+          Kép majd lesz...
+        </div>
+        <div class="d-flex align-items-center align-self-center">
+          <button class="btn btn-dark m-3 " @click="UjGyros()"> Beküldés </button>
+        </div>
+        <div>
+
+        </div>
+      </div>
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal"> Bezár </button>
+      </div>
+  </div>
+</div>
 </template>
 <style scoped>
 
@@ -89,6 +126,11 @@
   position: absolute;
   bottom: 0;
   right: 0;
+}
+.felvetel{
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 .offcanvas{
     background-color:lightgray;
@@ -114,7 +156,8 @@ export default{
        kosartartalom:[],
        rendeles:{},
        rendelesek:[],
-       baseurl:"http://localhost/Fekete párducok/Gyros/API/database.php"
+       ujetel:{},
+       baseurl:"http://localhost/Gyros/API/database.php"
       }
     },
 created(){
@@ -143,6 +186,21 @@ methods:{
     this.kosartartalom.splice(this.kosartartalom.findIndex(x => x.ID ==kosaritem.ID), 1)
     localStorage.setItem("kosar", JSON.stringify(this.kosartartalom))
     this.Kosar()
+  },
+  UjGyros(){
+    let data= {
+      table: "etelek",
+      values: {
+        nev: this.ujetel.nev,
+        ar: this.ujetel.ar,
+        osszetevok: this.ujetel.osszetevok
+      }
+    }
+    
+    console.log(this.baseurl)
+    axios.post(this.baseurl, data).then(res => {
+      
+    })
   },
   Rendeles(){
     if (this.rendeles.nev == null || this.rendeles.cim == null || this.rendeles.telefonszam == null) {
@@ -181,9 +239,6 @@ methods:{
           })
 
         }
-        
-
-
       })
     }
   }
