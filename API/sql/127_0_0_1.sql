@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 02. 12:49
+-- Létrehozás ideje: 2023. Már 14. 11:56
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -43,8 +43,10 @@ CREATE TABLE `etelek` (
 --
 
 INSERT INTO `etelek` (`ID`, `nev`, `ar`, `osszetevok`, `kep`) VALUES
-(1, 'Csípős gyros pitában', 1800, 'Pita,Gyros hús,Lilahagyma,Vöröshagyma,Chili,Paradicsom,Szósz', 'CsiposGyros.png'),
-(2, 'Gyros pitában', 1700, 'Pita,Gyros hús,Lilahagyma,Vöröshagyma,Paradicsom,Szósz', 'Gyros.png');
+(1, 'Csípős gyros pitában', 1800, 'Pita, Gyros hús, Lilahagyma, Vöröshagyma, Chili, Paradicsom, Szósz', 'CsiposGyros.png'),
+(2, 'Gyros pitában', 1700, 'Pita, Gyros hús, Lilahagyma, Vöröshagyma, Paradicsom, Szósz', 'Gyros.png'),
+(4, 'Krisztián Pitája', 800, 'Krisztián, Pita ', 'KrisztianPita.png'),
+(5, 'Krisztián Kedvence', 1500, 'Krisztián, Gyros pitában, Titkos szósz', 'KrisztianPicsa.png');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,11 @@ CREATE TABLE `kapcsolat` (
 
 INSERT INTO `kapcsolat` (`ID`, `rendelesekID`, `etelekID`, `mennyiseg`) VALUES
 (1, 1, 1, 3),
-(2, 2, 2, 2);
+(2, 2, 2, 2),
+(10, 27, 2, 2),
+(11, 28, 1, 12),
+(12, 28, 2, 2),
+(13, 28, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -78,16 +84,20 @@ CREATE TABLE `rendelesek` (
   `nev` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `telefonszam` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `cim` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `megjegyzes` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL
+  `megjegyzes` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `kiszallitva` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `rendelesek`
 --
 
-INSERT INTO `rendelesek` (`ID`, `nev`, `telefonszam`, `cim`, `megjegyzes`) VALUES
-(1, 'Kerék Ádám', '06206969696', '6300 Baja, bácska tér 1.', 'Két thai masszőrt is dobjanak mellé'),
-(2, 'Kertész Krisztián', '06206459696', '6300 Baja, bácska tér 2.', 'Két férfi thai masszőrt is dobjanak mellé');
+INSERT INTO `rendelesek` (`ID`, `nev`, `telefonszam`, `cim`, `megjegyzes`, `kiszallitva`) VALUES
+(1, 'Kerék Ádám', '06206969696', '6300 Baja, bácska tér 1.', 'Két thai masszőrt is dobjanak mellé', 1),
+(2, 'Kertész Krisztián', '06206459696', '6300 Baja, bácska tér 2.', 'Két férfi thai masszőrt is dobjanak mellé', 0),
+(26, 'sdds', 'sddssd', 'sddsds', 'sdsdsd', 0),
+(27, 'a', 'a', 'a', 'a', 0),
+(28, 'a', 'a', 'a', 'a', 0);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -121,19 +131,19 @@ ALTER TABLE `rendelesek`
 -- AUTO_INCREMENT a táblához `etelek`
 --
 ALTER TABLE `etelek`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `kapcsolat`
 --
 ALTER TABLE `kapcsolat`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT a táblához `rendelesek`
 --
 ALTER TABLE `rendelesek`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Megkötések a kiírt táblákhoz
