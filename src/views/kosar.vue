@@ -1,7 +1,7 @@
 <template>
 
 <button class="btn btn-lg btn-dark m-3 rounded-circle kosargomb" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bi bi-cart3"></i></button>
-<button class="btn btn-lg btn-dark m-3 felvetel " data-bs-toggle="modal" data-bs-target="#ujgyrosz"> <i class="bi bi-plus"></i></button>
+  <button class="btn btn-lg btn-dark m-3 felvetel " data-bs-toggle="modal" data-bs-target="#ujgyrosz"> <i class="bi bi-plus"></i></button>
 
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -123,12 +123,12 @@
   border: 1px solid black
 }
 .kosargomb{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
 }
 .felvetel{
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
 }
@@ -196,8 +196,6 @@ methods:{
         osszetevok: this.ujetel.osszetevok
       }
     }
-    
-    console.log(this.baseurl)
     axios.post(this.baseurl, data).then(res => {
       
     })

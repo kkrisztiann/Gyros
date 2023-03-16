@@ -6,10 +6,11 @@
     <h5 class="card-title d-flex justify-content-center"> {{ etel.nev }} </h5>
     <p class="card-text osszetevok"> {{ etel.osszetevok }} </p>
     <p class="card-text"> {{ etel.ar }}  Ft</p>
-      <div class="gombok d-flex justify-content-end">
-        <input type="number"  min="1" max="10" v-model="etel.mennyiseg" style="width: 3vw; margin-right: 10px;" name="" id="">
-        <a href="#" class="btn btn-dark" @click="KosarbaRak(etel)">Kosárba tesz</a>
-      </div>
+    <div class="gombok d-flex justify-content-between">
+       <button class="btn btn-danger" @click="Torles(etel.ID)"> <i class="bi bi-trash3"></i> </button>
+      <input type="number"  min="1" max="10" v-model="etel.mennyiseg" style="width: 3vw; margin-right: 10px;" name="" id="">
+      <a href="#" class="btn btn-dark" @click="KosarbaRak(etel)">Kosárba tesz</a>
+    </div>
     </div>
   </div>
 </div>
@@ -68,7 +69,21 @@ export default{
       else{
         return JSON.parse(localStorage.getItem("kosar"));
       }
+    },
+    Torles(csajdi){
+    let data= {
+      table: "etelek",
+      id: csajdi
     }
+    axios.delete(this.baseurl, {data:data}).then(res => {
+      if (res.data.affectedRows == 0) {
+        alert("Jelenleg nem törölhető, mivel rendeltek belőle")
+      }
+    })
+    .catch(err =>{
+      console.log(err);
+    })
+  },
    }
   }
 
