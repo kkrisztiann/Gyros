@@ -188,7 +188,11 @@ methods:{
     this.Kosar()
   },
   UjGyros(){
-    let data= {
+    if (this.ujetel.nev == "" || this.ujetel.ar == "" || this.ujetel.osszetevok == null) {
+      alert("Minden mezőt kötelező kitölteni!")
+    }
+    else{
+      let data= {
       table: "etelek",
       values: {
         nev: this.ujetel.nev,
@@ -199,6 +203,7 @@ methods:{
     axios.post(this.baseurl, data).then(res => {
       
     })
+    }
   },
   Rendeles(){
     if (this.rendeles.nev == null || this.rendeles.cim == null || this.rendeles.telefonszam == null) {
